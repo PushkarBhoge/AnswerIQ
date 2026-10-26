@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+
+{% block title %}Evaluation Results — AnswerIQ{% endblock %}
+
+{% block content %}
+<div class="page-container results-container">
+
+  <!-- Top Action Bar -->
+  <div class="results-top-nav">
+    <div class="nav-back-group">
+      <a href="{{ url_for('index') }}" class="btn btn-outline">&larr; New Evaluation</a>
+      <a href="{{ url_for('index', tab='history') }}" class="btn btn-secondary-sm">📜 View History</a>
+    </div>
+
+    <div class="status-pill status-{{ res.status }}">
+      {% if res.status == 'sufficient_evidence' %}
+        <span class="pill-dot green"></span> Sufficient Dataset Evidence
+      {% elif res.status == 'limited_evidence' %}
+        <span class="pill-dot amber"></span> Limited Dataset Evidence
+      {% else %}
+        <span class="pill-dot red"></span> Insufficient Dataset Evidence
+      {% endif %}
+    </div>
+  </div>
+
+  {% if from_history %}
+  <div class="history-banner">
+    <span class="history-banner-icon">📜</span>
+    <span>Viewing historical evaluation recorded on <strong>{{ record_meta.timestamp }}</strong></span>
+  </div>
+  {% endif %}
+
+  <!-- Score Summary Hero Card -->
+  <section class="score-hero-card">
+    <div class="score-main">
+      <div class="score-numbers">
+        <span class="score-awarded">{{ "%.1f"|format(res.awarded_marks) }}</span>
+        <span class="score-max">/ {{ "%.1f"|format(res.max_marks) }}</span>
+        <span class="score-unit">marks</span>
+      </div>
+      <div class="percentage-badge">
+        <span class="pct-val">{{ "%.1f"|format(res.percentage_score) }}%</span>
+        <span class="pct-label">Estimated Score</span>
+      </div>
+    </div>
+
+    <div class="score-context">
+      <p class="score-note">
+        <strong>Evidence Status:</strong> {{ res.status_message }}
+      </p>
+      <p class="score-disclaimer">
+        <em>{{ res.scoring_note }}</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- Input Summary Card -->
+  <section class="card input-summary-card">
+    <h2 class="card-title">Evaluated Question &amp; Student Submission</h2>
+    <div class="summary-block">
+      <h4 class="subhead">Question:</h4>
+      <p class="question-text">{{ res.question }}</p>
+    </div>
+    <div class="summary-block">
+      <h4 class="subhead">Student's Answer:</h4>
+      <div class="student-text-box">{{ res.student_answer }}</div>
+    </div>
+  </section>
+
+  {% if res.status == 'insufficient_evidence' %}
+  <!-- Insufficient Evidence Notice -->
+  <section class="card card-warning-boundary">
+    <h3 class="card-title warning-title">⚠️ Inconclusive Evaluation Due to Insufficient Dataset Evidence</h3>
+    <p>
+      The local dataset in <code>data/</code> does not contain sufficiently relevant records to ground this question.
+      Under AnswerIQ's strict dataset-only policy, no marks are fabricated and no outside reference answers are assumed.
+    </p>
+    <div class="searched-records-box">
+      <strong>Records Searched in Local Dataset:</strong> {{ res.retrieval_info.searched_records_count }} records.
+      <br>
+      <strong>Best Match Similarity:</strong> {{ res.retrieval_info.best_similarity }} (Threshold required: {{ res.retrieval_info.threshold }})
+    </div>
+  </section>
+  {% else %}
+
+  <!-- Concept-wise Breakdown Table -->
+  <section class="card">
+    <div class="card-header-row">
+      <h2 class="card-title">Concept-Wise Rubric Breakdown</h2>
+      <span class="badge-count">{{ res.concept_scores|length }} Expected Concepts</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="rubric-table">
+        <thead>
+          <tr>
+            <th>Expected Concept</th>
+            <th>Semantic Match</th>
+            <th>Terminology Matched</th>
+            <th>Status</th>
+            <th>Marks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cs in res.concept_scores %}
+          <tr>
+            <td class="concept-cell">
+              <strong>{{ cs.concept }}</strong>
+              {% if cs.evidence_snippet %}
+              <div class="matched-snippet">
+                <em>Matched quote:</em> "{{ cs.evidence_snippet }}"
+              </div>
+              {% endif %}
+              <div class="concept-explanation">{{ cs.explanation }}</div>
+            </td>
+            <td>
+              <span class="score-chip">{{ "%.0f"|format(cs.semantic_score * 100) }}%</span>
+            </td>
+            <td>
+              {% if cs.matched_keywords %}
+                <div class="kw-tags">
+                  {% for kw in cs.matched_keywords %}
+                    <span class="kw-tag matched">{{ kw }}</span>
+                  {% endfor %}
+                </div>
+              {% endif %}
+              {% if cs.missing_keywords %}
+                <div class="kw-tags missing-group">
+                  <span class="kw-label">Missing:</span>
+                  {% for kw in cs.missing_keywords %}
+                    <span class="kw-tag missing">{{ kw }}</span>
+                  {% endfor %}
+                </div>
+              {% endif %}
+              {% if not cs.matched_keywords and not cs.missing_keywords %}
+                <span class="text-muted">None specified</span>
+              {% endif %}
+            </td>
+            <td>
+              <span class="badge-status badge-{{ cs.status|lower|replace(' ', '-') }}">
+                {{ cs.status }}
+              </span>
+            </td>
+            <td class="marks-cell">
+              <strong>{{ "%.1f"|format(cs.awarded_marks) }}</strong> / {{ "%.1f"|format(cs.max_marks) }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Qualitative Feedback Grid -->
+  <div class="feedback-grid">
+    <!-- Strengths -->
+    <section class="card card-strengths">
+      <h3 class="card-title text-success">✓ Strengths &amp; Correct Explanations</h3>
+      <ul class="feedback-list strengths-list">
+        {% for s in res.strengths %}
+        <li>{{ s|safe }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <!-- Missing Concepts -->
+    <section class="card card-missing">
+      <h3 class="card-title text-amber">✗ Missing Concepts &amp; Incomplete Points</h3>
+      <ul class="feedback-list missing-list">
+        {% for m in res.missing_concepts %}
+        <li>{{ m|safe }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
+
+  <!-- Potential Errors & Recommendations -->
+  <div class="feedback-grid">
+    <!-- Potential Errors -->
+    <section class="card card-errors">
+      <h3 class="card-title text-danger">⚠️ Potential Errors &amp; Discrepancies</h3>
+      <ul class="feedback-list errors-list">
+        {% for err in res.potential_errors %}
+        <li>{{ err }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <!-- Recommendations -->
+    <section class="card card-recommendations">
+      <h3 class="card-title text-info">💡 Personalized Recommendations</h3>
+      <ul class="feedback-list recs-list">
+        {% for r in res.recommendations %}
+        <li>{{ r }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
+
+  <!-- Dataset-Grounded Reference Answer -->
+  {% if res.reference_answer %}
+  <section class="card card-reference">
+    <div class="card-header-row">
+      <h3 class="card-title">Dataset-Grounded Reference Answer</h3>
+      <span class="verified-tag">Grounded in Dataset</span>
+    </div>
+    <div class="reference-content">
+      {{ res.reference_answer }}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Improved Student Answer -->
+  {% if res.improved_answer %}
+  <section class="card card-improved">
+    <h3 class="card-title">Suggested Improved Answer</h3>
+    <p class="section-hint">Synthesized with missing technical concepts while retaining student framing:</p>
+    <div class="improved-content">
+      {{ res.improved_answer }}
+    </div>
+  </section>
+  {% endif %}
+
+  {% endif %}
+
+  <!-- Source Traceability Card -->
+  <section class="card card-traceability">
+    <h3 class="card-title">Dataset Source Traceability</h3>
+    <p class="section-hint">Records retrieved from the local <code>data/</code> folder for this evaluation:</p>
+    <div class="table-responsive">
+      <table class="source-table">
+        <thead>
+          <tr>
+            <th>Source ID</th>
+            <th>Dataset File</th>
+            <th>Row</th>
+            <th>Relevance Similarity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for src in res.retrieval_info.top_sources %}
+          <tr>
+            <td><code>{{ src.source_id }}</code></td>
+            <td>{{ src.file }}</td>
+            <td>Row {{ src.row }}</td>
+            <td><strong>{{ "%.2f"|format(src.similarity) }}</strong></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Bottom Action Bar -->
+  <div class="bottom-actions">
+    <a href="{{ url_for('index') }}" class="btn btn-primary">Evaluate Another Answer</a>
+    <a href="{{ url_for('index', tab='history') }}" class="btn btn-secondary">Go to History</a>
+  </div>
+
+</div>
+{% endblock %}

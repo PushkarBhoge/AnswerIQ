@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+
+{% block title %}Evaluate Answer &amp; History — AnswerIQ{% endblock %}
+
+{% block content %}
+<div class="page-container">
+  
+  <!-- App Tabs Navigation -->
+  <div class="tabs-header-wrapper">
+    <div class="tabs-header" role="tablist">
+      <button 
+        type="button" 
+        class="tab-btn {% if active_tab != 'history' %}active{% endif %}" 
+        id="tabBtnEval"
+        onclick="switchTab('evaluate')"
+      >
+        <span class="tab-icon">⚡</span>
+        <span class="tab-text">Evaluate Answer</span>
+      </button>
+      <button 
+        type="button" 
+        class="tab-btn {% if active_tab == 'history' %}active{% endif %}" 
+        id="tabBtnHistory"
+        onclick="switchTab('history')"
+      >
+        <span class="tab-icon">📜</span>
+        <span class="tab-text">Evaluation History</span>
+        <span class="tab-counter-badge" id="historyCounterBadge">{{ history|length }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- TAB 1: EVALUATE FORM -->
+  <div id="tabContentEval" class="tab-panel {% if active_tab == 'history' %}hidden{% endif %}">
+    <!-- Hero / Introduction -->
+    <section class="intro-card">
+      <div class="intro-badge">
+        <span class="sparkle">✨</span> AnswerIQ Assessment Engine
+      </div>
+      <h1 class="page-title">Performance Rating &amp; Natural-language Intelligent Text Assessment</h1>
+      <p class="page-description">
+        AI-based Computer Networking answer evaluation grounded in local <code>.parquet</code> datasets.
+        Predict marks, review concept-by-concept alignment, identify missing terminology, and generate dataset-verified feedback.
+      </p>
+
+      <div class="policy-alert">
+        <div class="alert-icon-wrap">
+          <span class="alert-icon">🛡️</span>
+        </div>
+        <div class="alert-content">
+          <strong>Strict Dataset-Only Policy:</strong>
+          All expected concepts, marks rubrics, and reference answers are extracted exclusively from the local dataset in <code>data/</code>.
+          The AI model cannot introduce external networking facts.
+        </div>
+      </div>
+    </section>
+
+    <!-- Error message display if any flashed or passed -->
+    {% if error_message %}
+    <div class="banner-error">
+      <span class="error-icon">⚠️</span>
+      <span>{{ error_message }}</span>
+    </div>
+    {% endif %}
+
+    <!-- Evaluation Form -->
+    <form id="evaluationForm" action="{{ url_for('evaluate') }}" method="POST" class="eval-form">
+      
+      <!-- Question Input -->
+      <div class="form-group">
+        <div class="label-row">
+          <label for="question" class="form-label">
+            Computer Networking Question <span class="required">*</span>
+          </label>
+          <span class="char-count" id="questionCount">0 / 1000 chars</span>
+        </div>
+
+        <div class="field-wrapper">
+          <textarea
+            id="question"
+            name="question"
+            class="form-control"
+            rows="3"
+            placeholder="e.g. What are the five processes of transparent bridging as defined in IEEE 802.1d?"
+            required
+            maxlength="1000"
+          >{{ prefill_question if prefill_question else '' }}</textarea>
+          
+          <!-- In-field clear button -->
+          <button 
+            type="button" 
+            class="btn-clear-inline hidden" 
+            id="clearQuestionBtn"
+            onclick="clearField('question')" 
+            title="Clear Question"
+            aria-label="Clear question"
+          >
+            ✕
+          </button>
+        </div>
+        <small class="form-helper">The system retrieves evidence records matching this question from the local dataset.</small>
+      </div>
+
+      <!-- Maximum Marks -->
+      <div class="form-group max-marks-group">
+        <label for="max_marks" class="form-label">
+          Maximum Marks <span class="required">*</span>
+        </label>
+        <div class="marks-input-wrapper">
+          <input
+            type="number"
+            id="max_marks"
+            name="max_marks"
+            class="form-control marks-control"
+            value="{{ prefill_max_marks if prefill_max_marks else '5.0' }}"
+            step="0.5"
+            min="1"
+            max="100"
+            required
+          >
+          <span class="marks-unit">marks</span>
+        </div>
+        <small class="form-helper">Marks will be allocated proportionally across dataset concepts.</small>
+      </div>
+
+      <!-- Student Answer Input -->
+      <div class="form-group">
+        <div class="label-row">
+          <label for="student_answer" class="form-label">
+            Student's Answer <span class="required">*</span>
+          </label>
+          <span class="char-count" id="answerCount">0 / 4000 chars</span>
+        </div>
+
+        <div class="field-wrapper">
+          <textarea
+            id="student_answer"
+            name="student_answer"
+            class="form-control"
+            rows="9"
+            placeholder="Enter the student's complete answer here for semantic and rubric evaluation..."
+            required
+            maxlength="4000"
+          >{{ prefill_student_answer if prefill_student_answer else '' }}</textarea>
+
+          <!-- In-field clear button -->
+          <button 
+            type="button" 
+            class="btn-clear-inline hidden" 
+            id="clearAnswerBtn"
+            onclick="clearField('student_answer')" 
+            title="Clear Student Answer"
+            aria-label="Clear student answer"
+          >
+            ✕
+          </button>
+        </div>
+        <small class="form-helper">Evaluated for conceptual coverage, semantic similarity, and expected keywords.</small>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button type="submit" id="submitBtn" class="btn btn-primary btn-glow">
+          <span class="btn-icon">⚡</span>
+          <span class="btn-text">Evaluate Answer</span>
+        </button>
+        <button type="button" id="clearAllBtn" class="btn btn-secondary" onclick="clearEntireForm()">
+          <span class="btn-icon">🔄</span> Clear Form
+        </button>
+      </div>
+
+      <!-- Loading State Overlay -->
+      <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="spinner-glow"></div>
+        <h3 class="loading-title">Evaluating Answer...</h3>
+        <p class="loading-desc">
+          Retrieving dataset evidence records, calculating semantic alignment, and generating rubric breakdown.
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <!-- TAB 2: HISTORY PANEL -->
+  <div id="tabContentHistory" class="tab-panel {% if active_tab != 'history' %}hidden{% endif %}">
+    <div class="history-section-header">
+      <div>
+        <h2 class="section-title">Evaluation History</h2>
+        <p class="section-subtitle">
+          Persistently saved in <code>data/history.json</code>. History persists across browser and server reloads.
+        </p>
+      </div>
+      {% if history and history|length > 0 %}
+      <form action="{{ url_for('clear_history') }}" method="POST" onsubmit="return confirm('Are you sure you want to clear all evaluation history?');">
+        <button type="submit" class="btn btn-danger-sm">
+          <span>🗑️</span> Clear History
+        </button>
+      </form>
+      {% endif %}
+    </div>
+
+    {% if not history or history|length == 0 %}
+    <div class="card empty-history-card">
+      <div class="empty-icon">📭</div>
+      <h3 class="empty-title">No Evaluations Recorded Yet</h3>
+      <p class="empty-desc">
+        When you evaluate student answers, their scores, rubrics, and feedback will automatically be saved here.
+      </p>
+      <button type="button" class="btn btn-primary" onclick="switchTab('evaluate')">
+        Evaluate Your First Answer
+      </button>
+    </div>
+    {% else %}
+    <div class="history-list">
+      {% for item in history %}
+      <div class="history-item-card">
+        <div class="history-card-header">
+          <div class="history-meta-row">
+            <span class="history-time">🕒 {{ item.timestamp }}</span>
+            <span class="history-status-badge status-{{ item.status }}">
+              {% if item.status == 'sufficient_evidence' %}
+                ✓ Sufficient Evidence
+              {% elif item.status == 'limited_evidence' %}
+                ⚡ Limited Evidence
+              {% else %}
+                ⚠️ Insufficient Evidence
+              {% endif %}
+            </span>
+          </div>
+
+          <div class="history-score-display">
+            <span class="history-score-num">{{ "%.1f"|format(item.awarded_marks) }} / {{ "%.1f"|format(item.max_marks) }}</span>
+            <span class="history-pct-badge">{{ "%.1f"|format(item.percentage_score) }}%</span>
+          </div>
+        </div>
+
+        <div class="history-card-body">
+          <div class="history-question">
+            <strong>Question:</strong> {{ item.question }}
+          </div>
+          <div class="history-answer-preview">
+            <strong>Answer Snippet:</strong> {{ item.student_answer[:220] }}{% if item.student_answer|length > 220 %}...{% endif %}
+          </div>
+        </div>
+
+        <div class="history-card-footer">
+          <a href="{{ url_for('view_history', record_id=item.id) }}" class="btn btn-outline-sm">
+            <span>📊</span> View Full Report
+          </a>
+          <button 
+            type="button" 
+            class="btn btn-secondary-sm"
+            data-question="{{ item.question|e }}"
+            data-marks="{{ item.max_marks }}"
+            data-answer="{{ item.student_answer|e }}"
+            onclick="loadHistoryFromButton(this)"
+          >
+            <span>✏️</span> Load in Form
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

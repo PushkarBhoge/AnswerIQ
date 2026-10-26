@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}AnswerIQ — Performance Rating and Natural-language Intelligent Text Assessment{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="{{ url_for('index') }}" class="brand-logo">
+        <div class="logo-badge-container">
+          <span class="logo-badge">IQ</span>
+          <div class="badge-glow"></div>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">AnswerIQ</span>
+          <span class="brand-subtitle">Performance Rating and Natural-language Intelligent Text Assessment</span>
+        </div>
+      </a>
+      
+      <nav class="header-nav">
+        <a href="{{ url_for('index') }}" class="nav-link {% if not from_history and active_tab != 'history' %}active{% endif %}">
+          <span class="nav-icon">⚡</span> Evaluate
+        </a>
+        <a href="{{ url_for('index', tab='history') }}" class="nav-link {% if active_tab == 'history' or from_history %}active{% endif %}">
+          <span class="nav-icon">📜</span> History
+          {% if history is defined and history|length > 0 %}
+          <span class="history-pill-badge">{{ history|length }}</span>
+          {% endif %}
+        </a>
+      </nav>
+
+      <div class="header-status">
+        <span class="status-indicator"></span>
+        <span class="status-label">Dataset-Grounded</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-wrapper">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p class="footer-note">
+        <strong>AnswerIQ</strong> grounds rubrics, references, and scores exclusively in local <code>.parquet</code> datasets.
+        Evaluations are saved persistently in <code>data/history.json</code>.
+      </p>
+      <p class="footer-meta">Powered by Flask, Sentence-Transformers &amp; Gemini 2.5 Flash</p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

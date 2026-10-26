@@ -1,0 +1,568 @@
+[
+  {
+    "id": "eval_1793001967_5",
+    "timestamp": "Oct 26, 2026 • 01:36 PM",
+    "timestamp_epoch": 1793001967.0923817,
+    "question": "Compare Carrier Sense Multiple Access with Collision Detection (CSMA/CD) and Collision Avoidance (CSMA/CA).",
+    "student_answer": "CSMA/CD and CSMA/CA are medium access control methods designed for shared media:\r\n1. Medium & Standards: CSMA/CD is used in legacy half-duplex wired Ethernet (IEEE 802.3), whereas CSMA/CA is used in wireless networks (IEEE 802.11 Wi-Fi) where transceivers cannot transmit and listen simultaneously.\r\n2. Operational Mechanism: In CSMA/CD, devices listen to the wire while transmitting; if a voltage spike indicates a collision, transmission halts immediately, a jam signal is sent, and devices wait for a random backoff time using truncated binary exponential backoff. In CSMA/CA, collisions cannot be reliably detected over radio frequencies, so devices attempt to avoid collisions beforehand using Interframe Spaces (DIFS/SIFS), random backoff counters, and optional RTS/CTS (Request to Send / Clear to Send) reservation frames.",
+    "max_marks": 3.0,
+    "awarded_marks": 2.31,
+    "percentage_score": 77.0,
+    "status": "sufficient_evidence",
+    "status_message": "Sufficient dataset evidence: Strong similarity match (0.68) found in local dataset records.",
+    "evaluation_result": {
+      "status": "sufficient_evidence",
+      "question": "Compare Carrier Sense Multiple Access with Collision Detection (CSMA/CD) and Collision Avoidance (CSMA/CA).",
+      "student_answer": "CSMA/CD and CSMA/CA are medium access control methods designed for shared media:\r\n1. Medium & Standards: CSMA/CD is used in legacy half-duplex wired Ethernet (IEEE 802.3), whereas CSMA/CA is used in wireless networks (IEEE 802.11 Wi-Fi) where transceivers cannot transmit and listen simultaneously.\r\n2. Operational Mechanism: In CSMA/CD, devices listen to the wire while transmitting; if a voltage spike indicates a collision, transmission halts immediately, a jam signal is sent, and devices wait for a random backoff time using truncated binary exponential backoff. In CSMA/CA, collisions cannot be reliably detected over radio frequencies, so devices attempt to avoid collisions beforehand using Interframe Spaces (DIFS/SIFS), random backoff counters, and optional RTS/CTS (Request to Send / Clear to Send) reservation frames.",
+      "max_marks": 3.0,
+      "awarded_marks": 2.31,
+      "percentage_score": 77.0,
+      "status_message": "Sufficient dataset evidence: Strong similarity match (0.68) found in local dataset records.",
+      "retrieval_info": {
+        "query": "Compare Carrier Sense Multiple Access with Collision Detection (CSMA/CD) and Collision Avoidance (CSMA/CA).",
+        "best_similarity": 0.6768,
+        "threshold": 0.25,
+        "has_sufficient_evidence": true,
+        "status": "sufficient_evidence",
+        "message": "Sufficient dataset evidence: Strong similarity match (0.68) found in local dataset records.",
+        "searched_records_count": 54332,
+        "top_sources": [
+          {
+            "source_id": "train-00000-of-00001.parquet:row-29822",
+            "similarity": 0.6768,
+            "file": "train-00000-of-00001.parquet",
+            "row": 29822,
+            "question_snippet": "What is the purpose and operation of Carrier Sense Multiple Access with Collision Detection (CSMA/CD)?"
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-44087",
+            "similarity": 0.6186,
+            "file": "train-00000-of-00001.parquet",
+            "row": 44087,
+            "question_snippet": "What is the primary purpose of implementing Carrier Sense Multiple Access with Collision Detection (CSMA/CD) in a networ..."
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-42296",
+            "similarity": 0.6063,
+            "file": "train-00000-of-00001.parquet",
+            "row": 42296,
+            "question_snippet": "Why do 802.11 devices use Carrier Sense Multiple Access with Collision Avoidance (CSMA/CA) instead of CSMA/CD, and how d..."
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-51948",
+            "similarity": 0.5987,
+            "file": "train-00000-of-00001.parquet",
+            "row": 51948,
+            "question_snippet": "What role does Carrier Sense Multiple Access with Collision Detection (CSMA/CD) play in networks that use hubs?"
+          }
+        ]
+      },
+      "reference_answer": "Carrier Sense Multiple Access with Collision Detection (CSMA/CD) is a protocol designed to help multiple devices share network bandwidth evenly without transmitting at the exact same time. While it cannot completely eliminate the possibility of collisions, it significantly reduces their frequency. By minimizing collisions, CSMA/CD also reduces the need for retransmissions, ultimately creating a more efficient data transmission environment for all connected devices.",
+      "concept_scores": [
+        {
+          "concept": "Carrier Sense Multiple Access with Collision Detection (CSMA/CD) is a protocol designed to help multiple devices share network bandwidth evenly without transmitting at the exact same time",
+          "max_marks": 1.0,
+          "awarded_marks": 1.0,
+          "semantic_score": 0.7078,
+          "keyword_score": 0.0,
+          "combined_score": 0.7078,
+          "status": "Full Credit",
+          "matched_keywords": [],
+          "missing_keywords": [],
+          "evidence_snippet": "CSMA/CD and CSMA/CA are medium access control methods designed for shared media:",
+          "explanation": "Concept clearly articulated with supporting networking terminology."
+        },
+        {
+          "concept": "While it cannot completely eliminate the possibility of collisions, it significantly reduces their frequency",
+          "max_marks": 1.0,
+          "awarded_marks": 0.57,
+          "semantic_score": 0.5068,
+          "keyword_score": 0.0,
+          "combined_score": 0.5068,
+          "status": "Partial Credit",
+          "matched_keywords": [],
+          "missing_keywords": [],
+          "evidence_snippet": "In CSMA/CA, collisions cannot be reliably detected over radio frequencies, so devices attempt to avoid collisions beforehand using Interframe Spaces (DIFS/SIFS), random backoff counters, and optional RTS/CTS (Request to Send / Clear to Send) reservation frames.",
+          "explanation": "Core concept partially addressed; some elaboration or key technical terms are missing."
+        },
+        {
+          "concept": "By minimizing collisions, CSMA/CD also reduces the need for retransmissions, ultimately creating a more efficient data transmission environment for all connected devices",
+          "max_marks": 1.0,
+          "awarded_marks": 0.74,
+          "semantic_score": 0.6362,
+          "keyword_score": 0.0,
+          "combined_score": 0.6362,
+          "status": "Partial Credit",
+          "matched_keywords": [],
+          "missing_keywords": [],
+          "evidence_snippet": "CSMA/CD and CSMA/CA are medium access control methods designed for shared media:",
+          "explanation": "Core concept partially addressed; some elaboration or key technical terms are missing."
+        }
+      ],
+      "strengths": [
+        "Strong grasp of: **Carrier Sense Multiple Access with Collision Detection (CSMA/CD) is a protocol designed to help multiple devices share network bandwidth evenly without transmitting at the exact same time**.",
+        "Partially explained: **While it cannot completely eliminate the possibility of collisions, it significantly reduces their frequency** (0.6/1.0 marks).",
+        "Partially explained: **By minimizing collisions, CSMA/CD also reduces the need for retransmissions, ultimately creating a more efficient data transmission environment for all connected devices** (0.7/1.0 marks)."
+      ],
+      "missing_concepts": [
+        "All primary concepts were addressed."
+      ],
+      "potential_errors": [
+        "No direct factual contradictions identified based on available dataset evidence."
+      ],
+      "recommendations": [
+        "Excellent performance! Your answer comprehensively covers the expected rubric criteria."
+      ],
+      "improved_answer": "CSMA/CD and CSMA/CA are medium access control methods designed for shared media:\r\n1. Medium & Standards: CSMA/CD is used in legacy half-duplex wired Ethernet (IEEE 802.3), whereas CSMA/CA is used in wireless networks (IEEE 802.11 Wi-Fi) where transceivers cannot transmit and listen simultaneously.\r\n2. Operational Mechanism: In CSMA/CD, devices listen to the wire while transmitting; if a voltage spike indicates a collision, transmission halts immediately, a jam signal is sent, and devices wait for a random backoff time using truncated binary exponential backoff. In CSMA/CA, collisions cannot be reliably detected over radio frequencies, so devices attempt to avoid collisions beforehand using Interframe Spaces (DIFS/SIFS), random backoff counters, and optional RTS/CTS (Request to Send / Clear to Send) reservation frames.\n\n[Refinement based on Dataset Evidence]: To achieve full marks, ensure exact specification of: Carrier Sense Multiple Access with Collision Detection (CSMA/CD) is a protocol designed to help multiple devices share network bandwidth evenly without transmitting at the exact same time. While it cannot completely eliminate the possibility of collisions, it significantly reduces their frequency. By minimizing collisions, CSMA/CD also reduces the need for retransmissions, ultimately creating a more efficient data transmission environment for all connected devices.",
+      "source_files": [
+        "train-00000-of-00001.parquet"
+      ],
+      "source_ids": [
+        "train-00000-of-00001.parquet:row-29822",
+        "train-00000-of-00001.parquet:row-44087",
+        "train-00000-of-00001.parquet:row-42296",
+        "train-00000-of-00001.parquet:row-51948"
+      ],
+      "scoring_note": "Estimated score based on local dataset evidence. Not an official exam grade.",
+      "limitations": [
+        "Extracted directly from local dataset record without Gemini generative processing."
+      ]
+    }
+  },
+  {
+    "id": "eval_1793001922_4",
+    "timestamp": "Oct 26, 2026 • 01:35 PM",
+    "timestamp_epoch": 1793001922.068787,
+    "question": "What is the Address Resolution Protocol (ARP) and what is its primary role in local network communication?",
+    "student_answer": "The Address Resolution Protocol (ARP) is a Network Layer/Data Link Layer protocol used to dynamically resolve a known Layer 3 logical IP address into its corresponding Layer 2 physical MAC address on a local Ethernet segment. When a host needs to transmit a packet to an IP on the local subnet, it broadcasts an ARP Request (\"Who has IP X.X.X.X? Tell MAC Y\"). The target device recognizes its IP and returns a unicast ARP Reply containing its hardware MAC address, which the sending host stores in its local ARP cache table to avoid continuous broadcast overhead.",
+    "max_marks": 2.0,
+    "awarded_marks": 2.0,
+    "percentage_score": 100.0,
+    "status": "sufficient_evidence",
+    "status_message": "Sufficient dataset evidence: Strong similarity match (0.57) found in local dataset records.",
+    "evaluation_result": {
+      "status": "sufficient_evidence",
+      "question": "What is the Address Resolution Protocol (ARP) and what is its primary role in local network communication?",
+      "student_answer": "The Address Resolution Protocol (ARP) is a Network Layer/Data Link Layer protocol used to dynamically resolve a known Layer 3 logical IP address into its corresponding Layer 2 physical MAC address on a local Ethernet segment. When a host needs to transmit a packet to an IP on the local subnet, it broadcasts an ARP Request (\"Who has IP X.X.X.X? Tell MAC Y\"). The target device recognizes its IP and returns a unicast ARP Reply containing its hardware MAC address, which the sending host stores in its local ARP cache table to avoid continuous broadcast overhead.",
+      "max_marks": 2.0,
+      "awarded_marks": 2.0,
+      "percentage_score": 100.0,
+      "status_message": "Sufficient dataset evidence: Strong similarity match (0.57) found in local dataset records.",
+      "retrieval_info": {
+        "query": "What is the Address Resolution Protocol (ARP) and what is its primary role in local network communication?",
+        "best_similarity": 0.5736,
+        "threshold": 0.25,
+        "has_sufficient_evidence": true,
+        "status": "sufficient_evidence",
+        "message": "Sufficient dataset evidence: Strong similarity match (0.57) found in local dataset records.",
+        "searched_records_count": 54332,
+        "top_sources": [
+          {
+            "source_id": "train-00000-of-00001.parquet:row-358",
+            "similarity": 0.5736,
+            "file": "train-00000-of-00001.parquet",
+            "row": 358,
+            "question_snippet": "What is the primary function of the Address Resolution Protocol (ARP)?"
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-6084",
+            "similarity": 0.4984,
+            "file": "train-00000-of-00001.parquet",
+            "row": 6084,
+            "question_snippet": "What is the primary function of the Address Resolution Protocol (ARP)?"
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-3623",
+            "similarity": 0.4932,
+            "file": "train-00000-of-00001.parquet",
+            "row": 3623,
+            "question_snippet": "What is the primary function of Address Resolution Protocol (ARP)?"
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-22579",
+            "similarity": 0.4741,
+            "file": "train-00000-of-00001.parquet",
+            "row": 22579,
+            "question_snippet": "How does the Address Resolution Protocol (ARP) function, and what role does an ARP table play in network communication?"
+          }
+        ]
+      },
+      "reference_answer": "Address Resolution Protocol (ARP) is used to find the hardware address from a known IP address.",
+      "concept_scores": [
+        {
+          "concept": "Address Resolution Protocol (ARP) is used to find the hardware address from a known IP address",
+          "max_marks": 2.0,
+          "awarded_marks": 2.0,
+          "semantic_score": 0.8434,
+          "keyword_score": 0.0,
+          "combined_score": 0.8434,
+          "status": "Full Credit",
+          "matched_keywords": [],
+          "missing_keywords": [],
+          "evidence_snippet": "The Address Resolution Protocol (ARP) is a Network Layer/Data Link Layer protocol used to dynamically resolve a known Layer 3 logical IP address into its corresponding Layer 2 physical MAC address on a local Ethernet segment.",
+          "explanation": "Concept clearly articulated with supporting networking terminology."
+        }
+      ],
+      "strengths": [
+        "Strong grasp of: **Address Resolution Protocol (ARP) is used to find the hardware address from a known IP address**."
+      ],
+      "missing_concepts": [
+        "All primary concepts were addressed."
+      ],
+      "potential_errors": [
+        "No direct factual contradictions identified based on available dataset evidence."
+      ],
+      "recommendations": [
+        "Excellent performance! Your answer comprehensively covers the expected rubric criteria."
+      ],
+      "improved_answer": "The Address Resolution Protocol (ARP) is a Network Layer/Data Link Layer protocol used to dynamically resolve a known Layer 3 logical IP address into its corresponding Layer 2 physical MAC address on a local Ethernet segment. When a host needs to transmit a packet to an IP on the local subnet, it broadcasts an ARP Request (\"Who has IP X.X.X.X? Tell MAC Y\"). The target device recognizes its IP and returns a unicast ARP Reply containing its hardware MAC address, which the sending host stores in its local ARP cache table to avoid continuous broadcast overhead.\n\n[Refinement based on Dataset Evidence]: To achieve full marks, ensure exact specification of: Address Resolution Protocol (ARP) is used to find the hardware address from a known IP address.",
+      "source_files": [
+        "train-00000-of-00001.parquet"
+      ],
+      "source_ids": [
+        "train-00000-of-00001.parquet:row-358",
+        "train-00000-of-00001.parquet:row-6084",
+        "train-00000-of-00001.parquet:row-3623",
+        "train-00000-of-00001.parquet:row-22579"
+      ],
+      "scoring_note": "Estimated score based on local dataset evidence. Not an official exam grade.",
+      "limitations": [
+        "Extracted directly from local dataset record without Gemini generative processing."
+      ]
+    }
+  },
+  {
+    "id": "eval_1793001853_3",
+    "timestamp": "Oct 26, 2026 • 01:34 PM",
+    "timestamp_epoch": 1793001853.0091743,
+    "question": "Explain the step-by-step DORA process used by DHCP to dynamically allocate IP configuration to client hosts.",
+    "student_answer": "Dynamic Host Configuration Protocol (DHCP) operates over UDP ports 67 (server) and 68 (client) through a four-step handshake known as DORA:\r\n1. Discover (DHCPDISCOVER): A newly joined client broadcasts a message with source IP 0.0.0.0 and destination IP 255.255.255.255 to locate any available DHCP servers on the local subnet.\r\n2. Offer (DHCPOFFER): Receiving DHCP servers reserve an available IP address from their configured pool and send an offer containing the proposed IP, subnet mask, lease duration, default gateway, and DNS servers.\r\n3. Request (DHCPREQUEST): The client selects one server's offer and broadcasts a formal request announcing its choice, simultaneously releasing any alternative offers back to other servers.\r\n4. Acknowledge (DHCPACK): The chosen server confirms the lease by transmitting a DHCPACK unicast or broadcast packet containing the final binding parameters. The client commits the IP to its network interface and begins normal IP communication.",
+    "max_marks": 4.0,
+    "awarded_marks": 0.0,
+    "percentage_score": 0.0,
+    "status": "insufficient_evidence",
+    "status_message": "Insufficient dataset evidence: Closest match similarity is 0.24, which is below the minimum required threshold of 0.25. The question is not adequately covered by the local dataset.",
+    "evaluation_result": {
+      "status": "insufficient_evidence",
+      "question": "Explain the step-by-step DORA process used by DHCP to dynamically allocate IP configuration to client hosts.",
+      "student_answer": "Dynamic Host Configuration Protocol (DHCP) operates over UDP ports 67 (server) and 68 (client) through a four-step handshake known as DORA:\r\n1. Discover (DHCPDISCOVER): A newly joined client broadcasts a message with source IP 0.0.0.0 and destination IP 255.255.255.255 to locate any available DHCP servers on the local subnet.\r\n2. Offer (DHCPOFFER): Receiving DHCP servers reserve an available IP address from their configured pool and send an offer containing the proposed IP, subnet mask, lease duration, default gateway, and DNS servers.\r\n3. Request (DHCPREQUEST): The client selects one server's offer and broadcasts a formal request announcing its choice, simultaneously releasing any alternative offers back to other servers.\r\n4. Acknowledge (DHCPACK): The chosen server confirms the lease by transmitting a DHCPACK unicast or broadcast packet containing the final binding parameters. The client commits the IP to its network interface and begins normal IP communication.",
+      "max_marks": 4.0,
+      "awarded_marks": 0.0,
+      "percentage_score": 0.0,
+      "status_message": "Insufficient dataset evidence: Closest match similarity is 0.24, which is below the minimum required threshold of 0.25. The question is not adequately covered by the local dataset.",
+      "retrieval_info": {
+        "query": "Explain the step-by-step DORA process used by DHCP to dynamically allocate IP configuration to client hosts.",
+        "best_similarity": 0.2418,
+        "threshold": 0.25,
+        "has_sufficient_evidence": false,
+        "status": "insufficient_evidence",
+        "message": "Insufficient dataset evidence: Closest match similarity is 0.24, which is below the minimum required threshold of 0.25. The question is not adequately covered by the local dataset.",
+        "searched_records_count": 54332,
+        "top_sources": [
+          {
+            "source_id": "train-00000-of-00001.parquet:row-2112",
+            "similarity": 0.2418,
+            "file": "train-00000-of-00001.parquet",
+            "row": 2112,
+            "question_snippet": "What are the four messages in the DHCP DORA process?"
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-29406",
+            "similarity": 0.2343,
+            "file": "train-00000-of-00001.parquet",
+            "row": 29406,
+            "question_snippet": "What are the four DHCP messages in the DORA process, and what function does each serve?"
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-1593",
+            "similarity": 0.2217,
+            "file": "train-00000-of-00001.parquet",
+            "row": 1593,
+            "question_snippet": "What is the primary purpose of DHCP in a network?"
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-38010",
+            "similarity": 0.2189,
+            "file": "train-00000-of-00001.parquet",
+            "row": 38010,
+            "question_snippet": "Can you explain step-by-step how DHCP Snooping blocks a spoofed DHCP RELEASE message coming from an incorrect port?"
+          }
+        ]
+      },
+      "reference_answer": "",
+      "concept_scores": [],
+      "strengths": [],
+      "missing_concepts": [
+        "Unable to identify expected concepts due to insufficient dataset evidence."
+      ],
+      "potential_errors": [
+        "Answer could not be verified against the local dataset."
+      ],
+      "recommendations": [
+        "Consult your networking course syllabus or add relevant question-answer records to data/.",
+        "Verify your question phrasing or try a more specific networking query."
+      ],
+      "improved_answer": "",
+      "source_files": [
+        "train-00000-of-00001.parquet"
+      ],
+      "source_ids": [
+        "train-00000-of-00001.parquet:row-2112",
+        "train-00000-of-00001.parquet:row-29406",
+        "train-00000-of-00001.parquet:row-1593",
+        "train-00000-of-00001.parquet:row-38010"
+      ],
+      "scoring_note": "Marks cannot be awarded because there is insufficient dataset evidence to verify the answer.",
+      "limitations": [
+        "No authoritative records found in the local dataset matching this question."
+      ]
+    }
+  },
+  {
+    "id": "eval_1792946985_2",
+    "timestamp": "Oct 25, 2026 • 10:19 PM",
+    "timestamp_epoch": 1792946985.9397695,
+    "question": "What is the Routing Information Protocol (RIP), and what are its key operational characteristics and limitations?",
+    "student_answer": "The Routing Information Protocol (RIP) is an Interior Gateway Protocol (IGP) designed for routing within autonomous networks. Its key characteristics and operational limitations include:\r\n\r\n1. Distance-Vector Logic: RIP is a classic distance-vector routing protocol that uses the Bellman-Ford algorithm. Every 30 seconds, routers running RIP periodically broadcast or multicast their complete routing table out of all active interfaces to direct neighbors.\r\n\r\n2. Metric (Hop Count): RIP relies strictly on hop count as its metric to evaluate the best path. Each router traversed represents one hop, regardless of the bandwidth, delay, or reliability of the link.\r\n\r\n3. Maximum Hop Count Limit: To prevent infinite routing loops (count-to-infinity problem), RIP sets a maximum hop count of 15. A hop count of 16 is defined as infinity, meaning the destination network is unreachable. Because of this 15-hop ceiling, RIP is only suitable for small networks.\r\n\r\n4. Administrative Distance: On Cisco and standard networking equipment, RIP has a default Administrative Distance (AD) of 120, making it less preferred than static routes (AD 1), OSPF (AD 110), or EIGRP (AD 90).\r\n\r\n5. Versions (RIPv1 vs RIPv2): RIPv1 is classful, broadcasting updates without subnet masks, which prevents the use of Variable-Length Subnet Masks (VLSM). RIPv2 improves on this by multicasting to 224.0.0.9, supporting classless routing with VLSM, and adding route authentication.",
+    "max_marks": 5.0,
+    "awarded_marks": 4.27,
+    "percentage_score": 85.4,
+    "status": "sufficient_evidence",
+    "status_message": "Sufficient dataset evidence: Strong similarity match (0.47) found in local dataset records.",
+    "evaluation_result": {
+      "status": "sufficient_evidence",
+      "question": "What is the Routing Information Protocol (RIP), and what are its key operational characteristics and limitations?",
+      "student_answer": "The Routing Information Protocol (RIP) is an Interior Gateway Protocol (IGP) designed for routing within autonomous networks. Its key characteristics and operational limitations include:\r\n\r\n1. Distance-Vector Logic: RIP is a classic distance-vector routing protocol that uses the Bellman-Ford algorithm. Every 30 seconds, routers running RIP periodically broadcast or multicast their complete routing table out of all active interfaces to direct neighbors.\r\n\r\n2. Metric (Hop Count): RIP relies strictly on hop count as its metric to evaluate the best path. Each router traversed represents one hop, regardless of the bandwidth, delay, or reliability of the link.\r\n\r\n3. Maximum Hop Count Limit: To prevent infinite routing loops (count-to-infinity problem), RIP sets a maximum hop count of 15. A hop count of 16 is defined as infinity, meaning the destination network is unreachable. Because of this 15-hop ceiling, RIP is only suitable for small networks.\r\n\r\n4. Administrative Distance: On Cisco and standard networking equipment, RIP has a default Administrative Distance (AD) of 120, making it less preferred than static routes (AD 1), OSPF (AD 110), or EIGRP (AD 90).\r\n\r\n5. Versions (RIPv1 vs RIPv2): RIPv1 is classful, broadcasting updates without subnet masks, which prevents the use of Variable-Length Subnet Masks (VLSM). RIPv2 improves on this by multicasting to 224.0.0.9, supporting classless routing with VLSM, and adding route authentication.",
+      "max_marks": 5.0,
+      "awarded_marks": 4.27,
+      "percentage_score": 85.4,
+      "status_message": "Sufficient dataset evidence: Strong similarity match (0.47) found in local dataset records.",
+      "retrieval_info": {
+        "query": "What is the Routing Information Protocol (RIP), and what are its key operational characteristics and limitations?",
+        "best_similarity": 0.4723,
+        "threshold": 0.25,
+        "has_sufficient_evidence": true,
+        "status": "sufficient_evidence",
+        "message": "Sufficient dataset evidence: Strong similarity match (0.47) found in local dataset records.",
+        "searched_records_count": 54332,
+        "top_sources": [
+          {
+            "source_id": "train-00000-of-00001.parquet:row-51556",
+            "similarity": 0.4723,
+            "file": "train-00000-of-00001.parquet",
+            "row": 51556,
+            "question_snippet": "What are the operational characteristics of the Routing Information Protocol (RIP), and how has it been improved in its ..."
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-22592",
+            "similarity": 0.4273,
+            "file": "train-00000-of-00001.parquet",
+            "row": 22592,
+            "question_snippet": "What are the key operational characteristics and limitations of a classful routing protocol?"
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-25624",
+            "similarity": 0.4051,
+            "file": "train-00000-of-00001.parquet",
+            "row": 25624,
+            "question_snippet": "What are the key operational limits and performance considerations when working with the Routing Information Protocol (R..."
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-19744",
+            "similarity": 0.3637,
+            "file": "train-00000-of-00001.parquet",
+            "row": 19744,
+            "question_snippet": "What is the Routing Information Protocol (RIP), and how does version 2 differ from version 1?"
+          }
+        ]
+      },
+      "reference_answer": "The Routing Information Protocol (RIP) is an interior gateway protocol (IGP) that relies on distance vector logic to determine routing paths. It evaluates network topology using a hop count metric, where each router crossed adds to the total distance. To improve upon the original release, Cisco introduced RIP version 2 (RIPv2) to replace RIPv1. The defining improvement in RIPv2 is the added support for Variable Length Subnet Masking (VLSM), which allows for much more efficient and flexible IP address allocation.",
+      "concept_scores": [
+        {
+          "concept": "The Routing Information Protocol (RIP) is an interior gateway protocol (IGP) that relies on distance vector logic to determine routing paths",
+          "max_marks": 1.25,
+          "awarded_marks": 1.25,
+          "semantic_score": 0.9488,
+          "keyword_score": 0.0,
+          "combined_score": 0.9488,
+          "status": "Full Credit",
+          "matched_keywords": [],
+          "missing_keywords": [],
+          "evidence_snippet": "The Routing Information Protocol (RIP) is an Interior Gateway Protocol (IGP) designed for routing within autonomous networks.",
+          "explanation": "Concept clearly articulated with supporting networking terminology."
+        },
+        {
+          "concept": "It evaluates network topology using a hop count metric, where each router crossed adds to the total distance",
+          "max_marks": 1.25,
+          "awarded_marks": 0.78,
+          "semantic_score": 0.5513,
+          "keyword_score": 0.0,
+          "combined_score": 0.5513,
+          "status": "Partial Credit",
+          "matched_keywords": [],
+          "missing_keywords": [],
+          "evidence_snippet": "Each router traversed represents one hop, regardless of the bandwidth, delay, or reliability of the link.",
+          "explanation": "Core concept partially addressed; some elaboration or key technical terms are missing."
+        },
+        {
+          "concept": "To improve upon the original release, Cisco introduced RIP version 2 (RIPv2) to replace RIPv1",
+          "max_marks": 1.25,
+          "awarded_marks": 0.99,
+          "semantic_score": 0.672,
+          "keyword_score": 0.0,
+          "combined_score": 0.672,
+          "status": "Partial Credit",
+          "matched_keywords": [],
+          "missing_keywords": [],
+          "evidence_snippet": "Versions (RIPv1 vs RIPv2): RIPv1 is classful, broadcasting updates without subnet masks, which prevents the use of Variable-Length Subnet Masks (VLSM).",
+          "explanation": "Core concept partially addressed; some elaboration or key technical terms are missing."
+        },
+        {
+          "concept": "The defining improvement in RIPv2 is the added support for Variable Length Subnet Masking (VLSM), which allows for much more efficient and flexible IP address allocation",
+          "max_marks": 1.25,
+          "awarded_marks": 1.25,
+          "semantic_score": 0.8123,
+          "keyword_score": 0.0,
+          "combined_score": 0.8123,
+          "status": "Full Credit",
+          "matched_keywords": [],
+          "missing_keywords": [],
+          "evidence_snippet": "Versions (RIPv1 vs RIPv2): RIPv1 is classful, broadcasting updates without subnet masks, which prevents the use of Variable-Length Subnet Masks (VLSM).",
+          "explanation": "Concept clearly articulated with supporting networking terminology."
+        }
+      ],
+      "strengths": [
+        "Strong grasp of: **The Routing Information Protocol (RIP) is an interior gateway protocol (IGP) that relies on distance vector logic to determine routing paths**.",
+        "Partially explained: **It evaluates network topology using a hop count metric, where each router crossed adds to the total distance** (0.8/1.2 marks).",
+        "Partially explained: **To improve upon the original release, Cisco introduced RIP version 2 (RIPv2) to replace RIPv1** (1.0/1.2 marks).",
+        "Strong grasp of: **The defining improvement in RIPv2 is the added support for Variable Length Subnet Masking (VLSM), which allows for much more efficient and flexible IP address allocation**."
+      ],
+      "missing_concepts": [
+        "All primary concepts were addressed."
+      ],
+      "potential_errors": [
+        "No direct factual contradictions identified based on available dataset evidence."
+      ],
+      "recommendations": [
+        "Excellent performance! Your answer comprehensively covers the expected rubric criteria."
+      ],
+      "improved_answer": "The Routing Information Protocol (RIP) is an Interior Gateway Protocol (IGP) designed for routing within autonomous networks. Its key characteristics and operational limitations include:\r\n\r\n1. Distance-Vector Logic: RIP is a classic distance-vector routing protocol that uses the Bellman-Ford algorithm. Every 30 seconds, routers running RIP periodically broadcast or multicast their complete routing table out of all active interfaces to direct neighbors.\r\n\r\n2. Metric (Hop Count): RIP relies strictly on hop count as its metric to evaluate the best path. Each router traversed represents one hop, regardless of the bandwidth, delay, or reliability of the link.\r\n\r\n3. Maximum Hop Count Limit: To prevent infinite routing loops (count-to-infinity problem), RIP sets a maximum hop count of 15. A hop count of 16 is defined as infinity, meaning the destination network is unreachable. Because of this 15-hop ceiling, RIP is only suitable for small networks.\r\n\r\n4. Administrative Distance: On Cisco and standard networking equipment, RIP has a default Administrative Distance (AD) of 120, making it less preferred than static routes (AD 1), OSPF (AD 110), or EIGRP (AD 90).\r\n\r\n5. Versions (RIPv1 vs RIPv2): RIPv1 is classful, broadcasting updates without subnet masks, which prevents the use of Variable-Length Subnet Masks (VLSM). RIPv2 improves on this by multicasting to 224.0.0.9, supporting classless routing with VLSM, and adding route authentication.\n\n[Refinement based on Dataset Evidence]: To achieve full marks, ensure exact specification of: The Routing Information Protocol (RIP) is an interior gateway protocol (IGP) that relies on distance vector logic to determine routing paths. It evaluates network topology using a hop count metric, where each router crossed adds to the total distance. To improve upon the original release, Cisco introduced RIP version 2 (RIPv2) to replace RIPv1. The defining improvement in RIPv2 is the added support for Variable Length Subnet Masking (VLSM), which allows for much more efficient and flexible IP address allocation.",
+      "source_files": [
+        "train-00000-of-00001.parquet"
+      ],
+      "source_ids": [
+        "train-00000-of-00001.parquet:row-51556",
+        "train-00000-of-00001.parquet:row-22592",
+        "train-00000-of-00001.parquet:row-25624",
+        "train-00000-of-00001.parquet:row-19744"
+      ],
+      "scoring_note": "Estimated score based on local dataset evidence. Not an official exam grade.",
+      "limitations": [
+        "Extracted directly from local dataset record without Gemini generative processing."
+      ]
+    }
+  },
+  {
+    "id": "eval_1792946926_1",
+    "timestamp": "Oct 25, 2026 • 10:18 PM",
+    "timestamp_epoch": 1792946926.5932333,
+    "question": "what is ospf ?",
+    "student_answer": "OSPP (Open Source Promotion Plan) is a program that encourages students to contribute to open-source software projects. Students work with open-source organizations under the guidance of mentors and gain practical programming experience.\r\n\r\nBenefits:\r\n1. Improves coding and problem-solving skills.\r\n2. Provides mentorship and real-world project experience.\r\n3. Helps build a strong resume and open-source portfolio.",
+    "max_marks": 3.0,
+    "awarded_marks": 0.0,
+    "percentage_score": 0.0,
+    "status": "limited_evidence",
+    "status_message": "Limited dataset evidence: Moderate similarity (0.26). Evaluation is grounded only in partially matching records.",
+    "evaluation_result": {
+      "status": "limited_evidence",
+      "question": "what is ospf ?",
+      "student_answer": "OSPP (Open Source Promotion Plan) is a program that encourages students to contribute to open-source software projects. Students work with open-source organizations under the guidance of mentors and gain practical programming experience.\r\n\r\nBenefits:\r\n1. Improves coding and problem-solving skills.\r\n2. Provides mentorship and real-world project experience.\r\n3. Helps build a strong resume and open-source portfolio.",
+      "max_marks": 3.0,
+      "awarded_marks": 0.0,
+      "percentage_score": 0.0,
+      "status_message": "Limited dataset evidence: Moderate similarity (0.26). Evaluation is grounded only in partially matching records.",
+      "retrieval_info": {
+        "query": "what is ospf ?",
+        "best_similarity": 0.2594,
+        "threshold": 0.25,
+        "has_sufficient_evidence": true,
+        "status": "limited_evidence",
+        "message": "Limited dataset evidence: Moderate similarity (0.26). Evaluation is grounded only in partially matching records.",
+        "searched_records_count": 54332,
+        "top_sources": [
+          {
+            "source_id": "train-00000-of-00001.parquet:row-5317",
+            "similarity": 0.2594,
+            "file": "train-00000-of-00001.parquet",
+            "row": 5317,
+            "question_snippet": "What is the purpose of the router ospf global command?"
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-9842",
+            "similarity": 0.2526,
+            "file": "train-00000-of-00001.parquet",
+            "row": 9842,
+            "question_snippet": "Where is the OSPF Router ID located in the output of the show ip ospf command?"
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-12820",
+            "similarity": 0.2469,
+            "file": "train-00000-of-00001.parquet",
+            "row": 12820,
+            "question_snippet": "What are the two foundational steps required for basic OSPF configuration?"
+          },
+          {
+            "source_id": "train-00000-of-00001.parquet:row-5453",
+            "similarity": 0.2405,
+            "file": "train-00000-of-00001.parquet",
+            "row": 5453,
+            "question_snippet": "How can you view the OSPF Router ID from the command line?"
+          }
+        ]
+      },
+      "reference_answer": "It places the user in OSPF configuration mode and sets the OSPF process ID value.",
+      "concept_scores": [
+        {
+          "concept": "It places the user in OSPF configuration mode and sets the OSPF process ID value",
+          "max_marks": 3.0,
+          "awarded_marks": 0.0,
+          "semantic_score": 0.218,
+          "keyword_score": 0.0,
+          "combined_score": 0.218,
+          "status": "Not Addressed",
+          "matched_keywords": [],
+          "missing_keywords": [],
+          "evidence_snippet": "",
+          "explanation": "Concept missing or unsupported by the provided answer."
+        }
+      ],
+      "strengths": [
+        "No strong conceptual matches identified."
+      ],
+      "missing_concepts": [
+        "Completely omitted: **It places the user in OSPF configuration mode and sets the OSPF process ID value**."
+      ],
+      "potential_errors": [
+        "No direct factual contradictions identified based on available dataset evidence."
+      ],
+      "recommendations": [
+        "Prioritize revising the omitted concepts: Completely omitted.",
+        "Incorporate exact technical networking terminology (such as protocol names, layer numbers, and mechanisms) to maximize rubric points."
+      ],
+      "improved_answer": "OSPP (Open Source Promotion Plan) is a program that encourages students to contribute to open-source software projects. Students work with open-source organizations under the guidance of mentors and gain practical programming experience.\r\n\r\nBenefits:\r\n1. Improves coding and problem-solving skills.\r\n2. Provides mentorship and real-world project experience.\r\n3. Helps build a strong resume and open-source portfolio.\n\n[Comprehensive Dataset-Grounded Revision]:\nIt places the user in OSPF configuration mode and sets the OSPF process ID value.",
+      "source_files": [
+        "train-00000-of-00001.parquet"
+      ],
+      "source_ids": [
+        "train-00000-of-00001.parquet:row-5317",
+        "train-00000-of-00001.parquet:row-9842",
+        "train-00000-of-00001.parquet:row-12820",
+        "train-00000-of-00001.parquet:row-5453"
+      ],
+      "scoring_note": "Estimated score based on local dataset evidence. Not an official exam grade. Evaluated under limited dataset coverage; score may be conservative.",
+      "limitations": [
+        "Extracted directly from local dataset record without Gemini generative processing."
+      ]
+    }
+  }
+]
